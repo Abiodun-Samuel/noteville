@@ -53,7 +53,7 @@ function CreateArea(props) {
         <form className="create-note shadow">
           {isExpanded ? (
             <input
-              className="w-100"
+              className="form-control"
               name="title"
               onChange={handleChange}
               value={note.title}
@@ -62,7 +62,7 @@ function CreateArea(props) {
             />
           ) : null}
           <textarea
-            className="w-100"
+            className="form-control mt-2"
             onClick={expand}
             name="content"
             onChange={handleChange}
@@ -81,7 +81,7 @@ function CreateArea(props) {
         </form>
         <div className="my-1">
           <button onClick={clear} className="btn btn-danger">
-            Clear All.
+            Clear All
           </button>
         </div>
       </div>
