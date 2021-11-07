@@ -82,7 +82,7 @@ function CreateArea(props) {
           </form>
           <div className="my-1">
             <button onClick={clear} className="btn btn-danger">
-              Clear All
+              Clear Notes
             </button>
           </div>
         </div>
