@@ -3,9 +3,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
+import Display from "./Display";
 
 function App() {
   const [notes, setNotes] = useState([]);
+  const stores = localStorage;
+  console.log(stores);
 
   function addNote(newNote) {
     setNotes((prev) => {
@@ -20,12 +23,15 @@ function App() {
       });
     });
   }
+  function deleteDisplay(title) {
+    localStorage.removeItem(title);
+  }
 
   return (
     <div>
       <Header />
       <CreateArea onAdd={addNote} />
-      {notes.map((noteItem, index) => {
+      {/* {notes.map((noteItem, index) => {
         return (
           <Note
             key={index}
@@ -35,8 +41,23 @@ function App() {
             onDelete={deleteNote}
           />
         );
-      })}
-      {/* <Note key={1} title="Note title" content="Note content" /> */}
+      })} */}
+      <div className="container-fluid mt-5">
+        <div className="row">
+          {Object.keys(stores).map((store, index) => {
+            return (
+              <Display
+                key={localStorage.key(index)}
+                id={localStorage.key(index)}
+                title={localStorage.key(index)}
+                content={localStorage.getItem(localStorage.key(index))}
+                onDel={deleteDisplay}
+              />
+            );
+          })}
+        </div>
+      </div>
+
       <Footer />
     </div>
   );

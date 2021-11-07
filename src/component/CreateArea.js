@@ -14,8 +14,10 @@ function CreateArea(props) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    if (value.length >= 1) {
+    if (name === "title" && value.length >= 1) {
       setEmpty(false);
+    } else {
+      setEmpty(true);
     }
     setNote((prev) => {
       return {
@@ -40,35 +42,40 @@ function CreateArea(props) {
   function expand() {
     setExpanded(true);
   }
+
   return (
-    <div>
-      <form className="create-note">
-        {isExpanded ? (
-          <input
-            name="title"
+    <div className="container position-relative d-flex justify-content-center">
+      <div className="col-lg-8">
+        <form className="create-note shadow">
+          {isExpanded ? (
+            <input
+              className="w-100"
+              name="title"
+              onChange={handleChange}
+              value={note.title}
+              placeholder="Title"
+              required
+            />
+          ) : null}
+          <textarea
+            className="w-100"
+            onClick={expand}
+            name="content"
             onChange={handleChange}
-            value={note.title}
-            placeholder="Title"
+            value={note.content}
+            placeholder="Take a note..."
+            rows={isExpanded ? 3 : 1}
             required
           />
-        ) : null}
-        <textarea
-          onClick={expand}
-          name="content"
-          onChange={handleChange}
-          value={note.content}
-          placeholder="Take a note..."
-          rows={isExpanded ? 3 : 1}
-          required
-        />
-        {!isEmpty ? (
-          <Zoom in={isExpanded}>
-            <Fab onClick={submitNote}>
-              <AddIcon />
-            </Fab>
-          </Zoom>
-        ) : null}
-      </form>
+          {!isEmpty ? (
+            <Zoom in={isExpanded}>
+              <Fab onClick={submitNote}>
+                <AddIcon />
+              </Fab>
+            </Zoom>
+          ) : null}
+        </form>
+      </div>
     </div>
   );
 }

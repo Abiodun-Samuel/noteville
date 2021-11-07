@@ -17,66 +17,62 @@ header {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
 }
-header h1 {
-  color: #fff;
+header h2 {
   font-family: "McLaren", cursive;
-  font-weight: 200;
-  line-height: 1.5;
-}
-header p {
-  color: #fff;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
-  line-height: 1.5;
+  text-align: center;
 }
 footer {
-  position: absolute;
-  text-align: center;
+  position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 2.5rem;
+  padding: 0.5rem;
+  background-color: #242424;
 }
+
 footer p {
-  color: #ccc;
+  text-align: center;
+  color: #b8b7b7;
 }
+
 .note {
   background: #fff;
   border-radius: 7px;
-  box-shadow: 0 2px 5px #ccc;
   padding: 10px;
-  width: 240px;
-  margin: 16px;
-  float: left;
 }
 .note h1 {
   font-size: 1.1em;
   margin-bottom: 6px;
+  color: var(--primary);
 }
 .note p {
   font-size: 1.1em;
   margin-bottom: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
+  color: #242424;
 }
 .note button {
   position: relative;
   float: right;
   margin-right: 10px;
-  color: #f5ba13;
   border: none;
   width: 36px;
   height: 36px;
   cursor: pointer;
   outline: none;
+  color: var(--danger);
+  background: #fff;
 }
 form.create-note {
   position: relative;
-  width: 480px;
+  /* width: 450px; */
   margin: 30px auto 20px auto;
   background: #fff;
   padding: 15px;
   border-radius: 7px;
-  box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 form.create-note input,
 form.create-note textarea {
@@ -87,13 +83,18 @@ form.create-note textarea {
   font-size: 1.2em;
   font-family: inherit;
   resize: none;
+  color: var(--primary);
+}
+form.create-note input::placeholder,
+form.create-note textarea::placeholder {
+  color: var(--primary);
 }
 form.create-note button {
   position: absolute;
   right: 18px;
   bottom: -18px;
-  background: #f5ba13;
   color: #fff;
+  background-color: var(--primary);
   border: none;
   border-radius: 50%;
   width: 36px;
