@@ -4,7 +4,11 @@ function Header() {
   return (
     <header>
       <div className="container">
-        <h2 className="text-primary">Note-Ville</h2>
+        <div className="row">
+          <div className="col-lg-12">
+            <h2 className="text-primary">Note-Ville</h2>
+          </div>
+        </div>
       </div>
     </header>
   );

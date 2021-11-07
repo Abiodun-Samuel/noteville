@@ -48,41 +48,43 @@ function CreateArea(props) {
   }
 
   return (
-    <div className="container position-relative d-flex justify-content-center">
-      <div className="col-lg-8">
-        <form className="create-note shadow">
-          {isExpanded ? (
-            <input
-              className="form-control"
-              name="title"
+    <div className="container position-relative">
+      <div className="row">
+        <div className="col-lg-6">
+          <form className="create-note shadow">
+            {isExpanded ? (
+              <input
+                className="form-control"
+                name="title"
+                onChange={handleChange}
+                value={note.title}
+                placeholder="Title"
+                required
+              />
+            ) : null}
+            <textarea
+              className="form-control mt-2"
+              onClick={expand}
+              name="content"
               onChange={handleChange}
-              value={note.title}
-              placeholder="Title"
+              value={note.content}
+              placeholder="Take a note..."
+              rows={isExpanded ? 3 : 1}
               required
             />
-          ) : null}
-          <textarea
-            className="form-control mt-2"
-            onClick={expand}
-            name="content"
-            onChange={handleChange}
-            value={note.content}
-            placeholder="Take a note..."
-            rows={isExpanded ? 3 : 1}
-            required
-          />
-          {!isEmpty ? (
-            <Zoom in={isExpanded}>
-              <Fab onClick={submitNote}>
-                <AddIcon />
-              </Fab>
-            </Zoom>
-          ) : null}
-        </form>
-        <div className="my-1">
-          <button onClick={clear} className="btn btn-danger">
-            Clear All
-          </button>
+            {!isEmpty ? (
+              <Zoom in={isExpanded}>
+                <Fab onClick={submitNote}>
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            ) : null}
+          </form>
+          <div className="my-1">
+            <button onClick={clear} className="btn btn-danger">
+              Clear All
+            </button>
+          </div>
         </div>
       </div>
     </div>

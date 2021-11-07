@@ -22,7 +22,7 @@ header {
 header h2 {
   font-family: "McLaren", cursive;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 footer {
   position: fixed;
@@ -48,12 +48,12 @@ footer p {
   padding: 10px;
 }
 .note h1 {
-  font-size: 1rem;
+  font-size: 1.4rem;
   margin-bottom: 6px;
   color: var(--primary);
 }
 .note p {
-  font-size: 0.7rem;
+  font-size: 1.1rem;
   margin-bottom: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -81,7 +81,7 @@ form.create-note {
 }
 form.create-note input,
 form.create-note textarea {
-  width: 100%;
+  font-size: 1.2rem;
   border: none;
   padding: 4px;
   outline: none;
@@ -93,6 +93,7 @@ form.create-note textarea {
 form.create-note input::placeholder,
 form.create-note textarea::placeholder {
   color: var(--primary);
+  font-size: 1.1rem;
 }
 form.create-note button {
   position: absolute;
