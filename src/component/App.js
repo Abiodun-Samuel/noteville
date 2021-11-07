@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import Note from "./Note";
+// import Note from "./Note";
 import CreateArea from "./CreateArea";
 import Display from "./Display";
 
 function App() {
   const [notes, setNotes] = useState([]);
   const stores = localStorage;
-  console.log(stores);
+  console.log(notes);
 
   function addNote(newNote) {
     setNotes((prev) => {
@@ -16,13 +16,13 @@ function App() {
     });
   }
 
-  function deleteNote(id) {
-    setNotes((prev) => {
-      return prev.filter((noteItem, index) => {
-        return index !== id;
-      });
-    });
-  }
+  // function deleteNote(id) {
+  //   setNotes((prev) => {
+  //     return prev.filter((noteItem, index) => {
+  //       return index !== id;
+  //     });
+  //   });
+  // }
   function deleteDisplay(title) {
     localStorage.removeItem(title);
   }
@@ -42,8 +42,8 @@ function App() {
           />
         );
       })} */}
-      <div className="container-fluid mt-5">
-        <div className="row">
+      <div className="container-fluid my-5">
+        <div className="row mb-5">
           {Object.keys(stores).map((store, index) => {
             return (
               <Display
