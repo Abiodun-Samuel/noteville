@@ -14,12 +14,12 @@ function CreateArea(props) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    if (name === "title" && value.length >= 1) {
-      setEmpty(false);
-    } else {
-      setEmpty(true);
-    }
     setNote((prev) => {
+      if (prev.title.length >= 2) {
+        setEmpty(false);
+      } else {
+        setEmpty(true);
+      }
       return {
         ...prev,
         [name]: value,
