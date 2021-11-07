@@ -5,6 +5,7 @@ import Fab from "@mui/material/Fab";
 
 function CreateArea(props) {
   const [isExpanded, setExpanded] = useState(false);
+  const [isEmpty, setEmpty] = useState(true);
 
   const [note, setNote] = useState({
     title: "",
@@ -13,6 +14,9 @@ function CreateArea(props) {
 
   function handleChange(e) {
     const { name, value } = e.target;
+    if (value.length >= 1) {
+      setEmpty(false);
+    }
     setNote((prev) => {
       return {
         ...prev,
@@ -28,6 +32,9 @@ function CreateArea(props) {
       content: "",
     });
     e.preventDefault();
+    var key = note.title;
+    var value = note.content;
+    localStorage.setItem(key, value);
   }
 
   function expand() {
@@ -42,6 +49,7 @@ function CreateArea(props) {
             onChange={handleChange}
             value={note.title}
             placeholder="Title"
+            required
           />
         ) : null}
         <textarea
@@ -51,12 +59,15 @@ function CreateArea(props) {
           value={note.content}
           placeholder="Take a note..."
           rows={isExpanded ? 3 : 1}
+          required
         />
-        <Zoom in={isExpanded}>
-          <Fab onClick={submitNote}>
-            <AddIcon />
-          </Fab>
-        </Zoom>
+        {!isEmpty ? (
+          <Zoom in={isExpanded}>
+            <Fab onClick={submitNote}>
+              <AddIcon />
+            </Fab>
+          </Zoom>
+        ) : null}
       </form>
     </div>
   );
