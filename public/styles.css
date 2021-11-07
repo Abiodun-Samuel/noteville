@@ -5,11 +5,12 @@
 }
 html {
   font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
 }
 body {
   background: #eee;
-  padding: 0 16px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 header {
   background-color: #242424;
@@ -21,6 +22,7 @@ header {
 header h2 {
   font-family: "McLaren", cursive;
   text-align: center;
+  font-size: 1.2rem;
 }
 footer {
   position: fixed;
@@ -37,6 +39,7 @@ footer {
 footer p {
   text-align: center;
   color: #b8b7b7;
+  font-size: 1rem;
 }
 
 .note {
@@ -45,12 +48,12 @@ footer p {
   padding: 10px;
 }
 .note h1 {
-  font-size: 1.1em;
+  font-size: 1rem;
   margin-bottom: 6px;
   color: var(--primary);
 }
 .note p {
-  font-size: 1.1em;
+  font-size: 0.7rem;
   margin-bottom: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -82,7 +85,7 @@ form.create-note textarea {
   border: none;
   padding: 4px;
   outline: none;
-  font-size: 1.2em;
+  font-size: 0.85rem;
   font-family: inherit;
   resize: none;
   color: var(--primary);

@@ -42,6 +42,10 @@ function CreateArea(props) {
   function expand() {
     setExpanded(true);
   }
+  function clear() {
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <div className="container position-relative d-flex justify-content-center">
@@ -75,6 +79,11 @@ function CreateArea(props) {
             </Zoom>
           ) : null}
         </form>
+        <div className="my-1">
+          <button onClick={clear} className="btn btn-danger">
+            Clear All
+          </button>
+        </div>
       </div>
     </div>
   );
