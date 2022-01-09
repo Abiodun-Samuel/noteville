@@ -5,8 +5,7 @@ import Fab from "@mui/material/Fab";
 
 const Display = (props) => {
   function handleDelete() {
-    props.onDel(props.title);
-    window.location.reload();
+    props.onDel(props.id);
   }
 
   return (

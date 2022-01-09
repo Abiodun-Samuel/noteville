@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
-import Zoom from "@material-ui/core/Zoom";
 import Fab from "@mui/material/Fab";
+import KEY from "./Constant";
 
 function CreateArea(props) {
   const [isExpanded, setExpanded] = useState(false);
   const [isEmpty, setEmpty] = useState(true);
 
   const [note, setNote] = useState({
+    id: Date.now(),
     title: "",
     content: "",
   });
@@ -15,7 +16,7 @@ function CreateArea(props) {
   function handleChange(e) {
     const { name, value } = e.target;
     setNote((prev) => {
-      if (prev.title.length >= 2) {
+      if (prev.title.length >= 1 && prev.content.length >= 1) {
         setEmpty(false);
       } else {
         setEmpty(true);
@@ -28,23 +29,32 @@ function CreateArea(props) {
   }
 
   function submitNote(e) {
+    e.preventDefault();
     props.onAdd(note);
+    const prev_local_notes = JSON.parse(localStorage.getItem(KEY));
+    if (!prev_local_notes) {
+      localStorage.setItem(KEY, JSON.stringify([note]));
+    } else {
+      const new_local_notes = [...prev_local_notes, { ...note }];
+      localStorage.setItem(KEY, JSON.stringify(new_local_notes));
+    }
+
+    props.dispatch({ type: "add", payload: { ...note } });
     setNote({
+      id: Date.now(),
       title: "",
       content: "",
     });
-    e.preventDefault();
-    var key = note.title;
-    var value = note.content;
-    localStorage.setItem(key, value);
+    setEmpty(true);
   }
 
   function expand() {
     setExpanded(true);
   }
+
   function clear() {
     localStorage.clear();
-    window.location.reload();
+    props.dispatch({ type: "clear", payload: {} });
   }
 
   return (
@@ -52,37 +62,34 @@ function CreateArea(props) {
       <div className="row">
         <div className="col-lg-6">
           <form className="create-note shadow">
-            {isExpanded ? (
-              <input
-                className="form-control"
-                name="title"
-                onChange={handleChange}
-                value={note.title}
-                placeholder="Title"
-                required
-              />
-            ) : null}
+            <input
+              className="form-control"
+              name="title"
+              onChange={handleChange}
+              value={note.title}
+              placeholder="Title"
+              required
+            />
             <textarea
+              style={{ overflow: "hidden" }}
               className="form-control mt-2"
               onClick={expand}
               name="content"
               onChange={handleChange}
               value={note.content}
-              placeholder="Take a note..."
+              placeholder="Enter your note..."
               rows={isExpanded ? 3 : 1}
               required
             />
-            {!isEmpty ? (
-              <Zoom in={isExpanded}>
-                <Fab onClick={submitNote}>
-                  <AddIcon />
-                </Fab>
-              </Zoom>
-            ) : null}
+            {isEmpty ? null : (
+              <Fab onClick={submitNote}>
+                <AddIcon />
+              </Fab>
+            )}
           </form>
           <div className="my-1">
             <button onClick={clear} className="btn btn-danger">
-              Clear Notes
+              Delete all Notes
             </button>
           </div>
         </div>
